@@ -1,5 +1,7 @@
 {
     "require": {
-        "nesbot/carbon": "^3.10"
+        "nesbot/carbon": "^3.10",
+        "danielstjules/stringy": "^3.1",
+        "illuminate/collections": "^12.20"
     }
 }
