@@ -2,6 +2,8 @@
 
 namespace App\L06\src;
 
+require __DIR__ . '/../../../vendor/autoload.php';
+
 class Course
 {
     private $name;
