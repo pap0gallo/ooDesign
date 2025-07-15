@@ -17,6 +17,7 @@ return array(
     'Psr\\Clock\\' => array($vendorDir . '/psr/clock/src'),
     'Illuminate\\Support\\' => array($vendorDir . '/illuminate/collections', $vendorDir . '/illuminate/macroable', $vendorDir . '/illuminate/conditionable'),
     'Illuminate\\Contracts\\' => array($vendorDir . '/illuminate/contracts'),
+    'Ds\\' => array($vendorDir . '/php-ds/php-ds/src'),
     'Carbon\\Doctrine\\' => array($vendorDir . '/carbonphp/carbon-doctrine-types/src/Carbon/Doctrine'),
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
     'App\\' => array($baseDir . '/App'),

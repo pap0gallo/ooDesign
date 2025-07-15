@@ -6,7 +6,7 @@ require __DIR__ . '/../../../vendor/autoload.php';
 
 use PHPUnit\Framework\TestCase;
 
-use function App\L01\src\Converter\toStd;
+use function App\L05\src\Converter\toStd;
 
 
 class ConverterTest extends TestCase

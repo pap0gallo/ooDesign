@@ -38,6 +38,10 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
             'Illuminate\\Support\\' => 19,
             'Illuminate\\Contracts\\' => 21,
         ),
+        'D' => 
+        array (
+            'Ds\\' => 3,
+        ),
         'C' => 
         array (
             'Carbon\\Doctrine\\' => 16,
@@ -95,6 +99,10 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
         'Illuminate\\Contracts\\' => 
         array (
             0 => __DIR__ . '/..' . '/illuminate/contracts',
+        ),
+        'Ds\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-ds/php-ds/src',
         ),
         'Carbon\\Doctrine\\' => 
         array (
