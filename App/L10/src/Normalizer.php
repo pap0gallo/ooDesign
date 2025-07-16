@@ -13,20 +13,14 @@ class Normalizer
         $this->collection = collect($raw);
     }
 
-    public function toLowerCaseAndTrim()
+    public function normalize()
     {
         return new self($this->collection->map(function ($item) {
             return [
                 'name' => trim(strtolower($item['name'])),
                 'country' => trim(strtolower($item['country'])),
             ];
-        })->all());
-    }
-
-    public function toGroupByCountryAndUnique()
-    {
-        $grouped = $this->collection
-            ->groupBy('country')
+        })->groupBy('country')
             ->map(function ($items) {
                 return collect($items)
                     ->pluck('name')
@@ -36,9 +30,7 @@ class Normalizer
                     ->all();
             })
             ->sortKeys()
-            ->all();
-
-        return new self($grouped);
+            ->all());
     }
 
     public function toArray()

@@ -34,8 +34,7 @@ function normalize($raw)
 {
     $normalizer = new Normalizer($raw);
     return $normalizer
-        ->toLowerCaseAndTrim()
-        ->toGroupByCountryAndUnique()
+        ->normalize()
         ->toArray();
 }
 
