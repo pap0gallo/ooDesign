@@ -2,8 +2,6 @@
 
 namespace App\L08\src;
 
-use Ds\Collection;
-
 require __DIR__ . '/../../../vendor/autoload.php';
 
 class DeckOfCards
