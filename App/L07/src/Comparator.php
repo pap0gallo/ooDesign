@@ -12,9 +12,9 @@ function normalizer($seq)
     foreach (str_split($seq) as $item) {
         if ($item === '#' && !$stack->isEmpty()) {
             $stack->pop();
-            continue;
+        } elseif ($item !== '#') {
+            $stack->push($item);
         }
-        $stack->push($item);
     }
     return $stack->toArray();
 }
@@ -24,4 +24,4 @@ function compare($seq1, $seq2)
     return normalizer($seq1) === normalizer($seq2);
 }
 
-var_dump(compare('ab##', 'c#d#'));
+var_dump(compare('#c', 'c'));

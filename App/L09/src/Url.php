@@ -8,36 +8,41 @@ $url = 'http://yandex.ru:80?key=value&key2=value2';
 
 class Url
 {
-    private $parser;
+    private array $url;
+    private array $queryParams;
 
     public function __construct(string $url)
     {
-        $this->parser = new Parser($url);
-    }
+        $this->url = parse_url($url);
+        $this->queryParams = [];
 
+        if (isset($this->url['query'])) {
+            parse_str($this->url['query'], $this->queryParams);
+        }
+    }
 
     public function getScheme(): string
     {
-        return $this->parser->getScheme();
+        return $this->url['scheme'];
     }
 
     public function getHostName(): string
     {
-        return $this->parser->getHostName();
+        return $this->url['host'];
     }
 
-    public function getParams(): array
+    public function getQueryParams(): array
     {
-        return $this->parser->getParams();
+        return $this->queryParams;
     }
 
-    public function getParam($key, $default = null)
+    public function getQueryParam($key, $default = null)
     {
-        return $this->parser->getParam($key, $default);
+        return $this->queryParams[$key] ?? $default;
     }
 
     public function equals(self $obj): bool
     {
-        return $this->parser->equals($obj->parser);
+        return $this == $obj;
     }
 }

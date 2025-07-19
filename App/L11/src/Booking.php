@@ -27,8 +27,10 @@ class Booking
             return true;
         } else {
             foreach ($this->periods as $period) {
-                if ($startDateCarbon->lessThan($period['endDate'])
-                && $endDateCarbon->greaterThan($period['startDate'])) {
+                if (
+                    $startDateCarbon->lessThan($period['endDate']) &&
+                    $endDateCarbon->greaterThan($period['startDate'])
+                ) {
                     return false;
                 }
             }

@@ -6,15 +6,15 @@ require __DIR__ . '/../../../vendor/autoload.php';
 
 class DeckOfCards
 {
-    private $baseDeck;
-    private const CARDS =
+    private $deck;
+    private const array ALLOWED_CARDS =
         [2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "lady", "king", "ace", "joker"];
 
     public function __construct(array $deck)
     {
         $collection = collect($deck)->unique();
 
-        $invalidCards = $collection->reject(fn($value) => in_array($value, self::CARDS));
+        $invalidCards = $collection->reject(fn($value) => in_array($value, self::ALLOWED_CARDS));
 
         if ($invalidCards->isNotEmpty()) {
             throw new InvalidArgumentException(
@@ -27,7 +27,7 @@ class DeckOfCards
             ->flatten();
     }
 
-    public function getShuffled()
+    public function getShuffled(): array
     {
         return $this->deck->shuffle()->all();
     }

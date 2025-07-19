@@ -6,44 +6,38 @@ require __DIR__ . '/../../../vendor/autoload.php';
 
 class Truncater
 {
-    const OPTIONS = [
+    const array DEFAULT_OPTIONS = [
         'separator' => '...',
         'length' => 200,
     ];
-    private string $separator;
-    private int $length;
+    private array $options;
 
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
-        $prepared = self::prepareOptions($options);
-        $this->separator = $prepared['separator'];
-        $this->length = $prepared['length'];
+        $this->options =  self::prepareOptions($options);
     }
 
-    public function truncate($text, $options = [])
+    public function truncate(string $text, array $options = []): string
     {
-        $prepared = self::prepareOptions($options + [
-                'separator' => $this->separator,
-                'length' => $this->length,
-            ]);
 
-        return strlen($text) > $prepared['length']
-            ? substr($text, 0, $prepared['length']) . $prepared['separator']
+        $prepared = self::prepareOptions(array_merge($this->options, $options));
+
+        return mb_strlen($text) > $prepared['length']
+            ? mb_substr($text, 0, $prepared['length']) . $prepared['separator']
             : $text;
     }
 
     private static function prepareOptions(array $options): array
     {
-        $prepared = self::OPTIONS;
+        $filtered = [];
 
         if (isset($options['separator']) && is_string($options['separator'])) {
-            $prepared['separator'] = $options['separator'];
+            $filtered['separator'] = $options['separator'];
         }
 
         if (isset($options['length']) && is_numeric($options['length'])) {
-            $prepared['length'] = abs((int)$options['length']);
+            $filtered['length'] = abs((int)$options['length']);
         }
-
-        return $prepared;
+        return array_merge(self::DEFAULT_OPTIONS, array_intersect_key($filtered, self::DEFAULT_OPTIONS));
     }
 }
